@@ -1,15 +1,41 @@
 POST http://localhost:8080/api/product/save-product
 Content-Type: application/json
 
-{
-      "article": 33,
-      "product_name": "Очки солненчные",
-      "last_purchase_price": 1000.00,
-      "last_sell_price": 1200.00
-}
+[
+  {
+      "article": 3,
+      "product_name": "Перчатки боксёрские",
+      "last_purchase_price": 3500.00,
+      "last_sell_price": 5500.00
+  },
+  {
+    "article": 5,
+    "product_name": "Штаны спортивные",
+    "last_purchase_price": 1500.00,
+    "last_sell_price": 2000.00
+  }
+]
 
 ###
 GET http://localhost:8080/api/product/1
 Accept: application/json
 
+###
 
+POST http://localhost:8080/api/product/save-several-products
+Content-Type: application/json
+
+[
+  {
+      "article": 6,
+      "product_name": "Мяч волейбольный",
+      "last_purchase_price": 1200.00,
+      "last_sell_price": 1700.00
+  },
+  {
+    "article": 7,
+    "product_name": "Сноуборд",
+    "last_purchase_price": 9000.00,
+    "last_sell_price": 13500.00
+  }
+]

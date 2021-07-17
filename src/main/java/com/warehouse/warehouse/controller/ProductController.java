@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -44,5 +45,13 @@ public class ProductController {
             System.out.println("Ни одного товара не найдено");
         }
         return product;
+    }
+
+    @PostMapping(value = "/save-several-products")
+    public List<Product> saveSeveralProducts(@RequestBody Product[]products) {
+        for (Product product:products) {
+            productService.saveProduct(product);
+        }
+        return Arrays.asList(products);
     }
 }
