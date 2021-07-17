@@ -1,0 +1,15 @@
+POST http://localhost:8080/api/product/save-product
+Content-Type: application/json
+
+{
+      "article": 33,
+      "product_name": "Очки солненчные",
+      "last_purchase_price": 1000.00,
+      "last_sell_price": 1200.00
+}
+
+###
+GET http://localhost:8080/api/product/1
+Accept: application/json
+
+
