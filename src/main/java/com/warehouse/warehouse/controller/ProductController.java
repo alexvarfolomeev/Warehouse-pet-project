@@ -5,16 +5,16 @@ import com.warehouse.warehouse.service.ProductServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Arrays;
 import java.util.List;
 
 
-@RestController
+@Controller
 @RequestMapping("/api/product")
 public class ProductController {
-
 
     @Autowired
     ProductServiceImpl productService;
@@ -29,13 +29,14 @@ public class ProductController {
     }
 
     @GetMapping(value = "/show-all-products")
-    public ResponseEntity<List<Product>> showProductsList() {
+    public String showProductsList(Model model) {
         List<Product>productsList = productService.findAll();
         if (productsList.size() == 0) {
             System.out.println("Ни одного товара не найдено");
             ResponseEntity.notFound().build();
         }
-        return ResponseEntity.ok(productsList);
+        model.addAttribute("goods", productsList);
+        return "/index";
     }
 
     @PostMapping(value = "/save-product")

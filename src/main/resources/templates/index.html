@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav th:insert="navbar"></nav>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Артикул</th>
+        <th scope="col">Наименование товара</th>
+        <th scope="col">Цена закупки, руб</th>
+        <th scope="col">Цена продажи, руб</th>
+    </tr>
+    </thead>
+    <tbody th:each="m : ${goods}">
+    <tr>
+        <th scope="row" th:text="${m.getId()}"></th>
+        <td th:text="${m.getArticle()}"></td>
+        <td th:text="${m.getProduct_name()}"></td>
+        <td th:text="${m.getLast_purchase_price()}"></td>
+        <td th:text="${m.getLast_sell_price()}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
