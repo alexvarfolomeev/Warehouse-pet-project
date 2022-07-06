@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link crossorigin="anonymous"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить товар</title>
+</head>
+<body>
+<nav th:insert="navbar"></nav>
+<h1 style="padding: 100px">Добавить товар</h1>
+<form action="#" method="post" th:action="@{/api/product/save-product}" th:object="${product}" style="margin: auto; padding-left: 100px">
+    <p>Артикул: <input th:field="*{article}" type="text"/></p>
+    <p>Название товара: <input th:field="*{product_name}" type="text"/></p>
+    <p>Цена закупки: <input th:field="*{last_purchase_price}" type="text"/></p>
+    <p>Цена продажи: <input th:field="*{last_sell_price}" type="text"/></p>
+    <p>Кол-во: <input th:field="*{quantity}" type="text"/></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+
+
+<form action="#" method="post" th:action="@{/api/product/save-several-products}" th:object="${product}" enctype="multipart/form-data" style="margin: auto; padding-left: 100px">
+    <div style="padding: 40px" class="form-group">
+        <label>Загрузка файла</label>
+        <input type="file" class="form-control" id="file" th:field="*{file}">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit file</button>
+</form>
+</body>
+</html>

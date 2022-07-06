@@ -13,7 +13,6 @@
 <table class="table table-striped">
     <thead>
     <tr>
-        <th scope="col">#</th>
         <th scope="col">Артикул</th>
         <th scope="col">Наименование товара</th>
         <th scope="col">Цена закупки, руб</th>
@@ -22,7 +21,6 @@
     </thead>
     <tbody th:each="m : ${goods}">
     <tr>
-        <th scope="row" th:text="${m.getId()}"></th>
         <td th:text="${m.getArticle()}"></td>
         <td th:text="${m.getProduct_name()}"></td>
         <td th:text="${m.getLast_purchase_price()}"></td>
