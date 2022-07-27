@@ -10,23 +10,6 @@
 </head>
 <body>
 <nav th:insert="navbar"></nav>
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <th scope="col">Артикул</th>
-        <th scope="col">Наименование товара</th>
-        <th scope="col">Цена закупки, руб</th>
-        <th scope="col">Цена продажи, руб</th>
-    </tr>
-    </thead>
-    <tbody th:each="m : ${goods}">
-    <tr>
-        <td th:text="${m.getArticle()}"></td>
-        <td th:text="${m.getProduct_name()}"></td>
-        <td th:text="${m.getLast_purchase_price()}"></td>
-        <td th:text="${m.getLast_sell_price()}"></td>
-    </tr>
-    </tbody>
-</table>
+    <h1>Главная страница</h1>
 </body>
 </html>

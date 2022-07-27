@@ -25,13 +25,13 @@ public class Product {
     private Integer article;
 
     @Column(name = "product_name")
-    private String product_name;
+    private String productName;
 
     @Column(name = "last_purchase_price")
-    private BigDecimal last_purchase_price;
+    private BigDecimal lastPurchasePrice;
 
     @Column(name = "last_sell_price")
-    private BigDecimal last_sell_price;
+    private BigDecimal lastSellPrice;
 
     @Column(name = "quantity")
     private Integer quantity;

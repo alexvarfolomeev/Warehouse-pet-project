@@ -12,6 +12,7 @@ import java.io.*;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl {
@@ -24,6 +25,10 @@ public class ProductServiceImpl {
         return (Product) product.get();
     }
 
+    public Product findProductByArticle(Integer article) {
+        return productRepository.findProductByArticle(article);
+    }
+
     public Product saveProduct(Product product) {
         productRepository.save(product);
         return product;
@@ -31,12 +36,29 @@ public class ProductServiceImpl {
 
     public void saveListOfProducts(List<Product>productList) {
         for (Product product : productList) {
-            productRepository.save(product);
+            if (checkIfProductExists(product.getArticle())) {
+                updateProduct(product);
+            } else {
+                saveProduct(product);
+            }
         }
     }
 
     public List<Product> findAll() {
         List<Product> productsList = (List<Product>) productRepository.findAll();
         return productsList;
+    }
+
+    private Boolean checkIfProductExists(Integer article) {
+        Product product = productRepository.findProductByArticle(article);
+        return product != null;
+    }
+
+    private Product updateProduct(Product product) {
+        Product oldProd = findProductByArticle(product.getArticle());
+        oldProd.setQuantity(oldProd.getQuantity() + product.getQuantity());
+        oldProd.setLastPurchasePrice(product.getLastPurchasePrice());
+        productRepository.deleteById(oldProd.getId());
+        return productRepository.save(oldProd);
     }
 }

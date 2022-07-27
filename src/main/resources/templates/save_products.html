@@ -13,9 +13,9 @@
 <h1 style="padding: 100px">Добавить товар</h1>
 <form action="#" method="post" th:action="@{/api/product/save-product}" th:object="${product}" style="margin: auto; padding-left: 100px">
     <p>Артикул: <input th:field="*{article}" type="text"/></p>
-    <p>Название товара: <input th:field="*{product_name}" type="text"/></p>
-    <p>Цена закупки: <input th:field="*{last_purchase_price}" type="text"/></p>
-    <p>Цена продажи: <input th:field="*{last_sell_price}" type="text"/></p>
+    <p>Название товара: <input th:field="*{productName}" type="text"/></p>
+    <p>Цена закупки: <input th:field="*{lastPurchasePrice}" type="text"/></p>
+    <p>Цена продажи: <input th:field="*{lastSellPrice}" type="text"/></p>
     <p>Кол-во: <input th:field="*{quantity}" type="text"/></p>
     <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
 </form>
