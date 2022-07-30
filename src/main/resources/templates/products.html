@@ -10,10 +10,10 @@
 </head>
 <body>
 <nav th:insert="navbar"></nav>
-<div>
-    <a th:href="@{@{/api/product/download-products-list}}">download</a>
+<div style="margin: 20px">
+    <a th:href="@{@{/api/product/download-products-list}}">Выгрузить список товров в Excel</a>
 </div>
-<table class="table table-striped">
+<table class="table table-striped" style="margin: 50px">
     <thead>
     <tr>
         <th scope="col">Артикул</th>
@@ -21,6 +21,7 @@
         <th scope="col">Цена закупки, руб</th>
         <th scope="col">Цена продажи, руб</th>
         <th scope="col">Кол-во</th>
+        <th scope="col">Склад</th>
     </tr>
     </thead>
     <tbody th:each="m : ${goods}">
@@ -30,6 +31,7 @@
         <td th:text="${m.getLastPurchasePrice()}"></td>
         <td th:text="${m.getLastSellPrice()}"></td>
         <td th:text="${m.getQuantity()}"></td>
+        <td th:text="${m.getWarehouse().getWarehouseNumber()}"></td>
     </tr>
     </tbody>
 </table>

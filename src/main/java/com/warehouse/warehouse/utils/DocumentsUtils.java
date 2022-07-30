@@ -3,7 +3,9 @@ package com.warehouse.warehouse.utils;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import com.warehouse.warehouse.model.Product;
+import com.warehouse.warehouse.model.Warehouse;
 import com.warehouse.warehouse.service.ProductServiceImpl;
+import com.warehouse.warehouse.service.WarehouseServiceImpl;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -27,6 +29,9 @@ public class DocumentsUtils {
 
     @Autowired
     ProductServiceImpl productService;
+
+    @Autowired
+    WarehouseServiceImpl warehouseService;
 
     public List<Product> getProductsFromExcelFile(MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
@@ -56,6 +61,9 @@ public class DocumentsUtils {
                     case 4:
                         product.setQuantity((int) cell.getNumericCellValue());
                         break;
+                    case 5:
+                        product.setWarehouse(warehouseService.getWarehouseById((long)cell.getNumericCellValue()).get());
+                        break;
                 }
             }
             productList.add(product);
@@ -83,7 +91,7 @@ public class DocumentsUtils {
     }
 
     public boolean downloadProductsListInExcel() throws IOException {
-        String FILE_NAME = "C:\\Users\\79639\\Desktop\\Products.xls";
+        final String FILE_NAME = "C:\\Users\\79639\\Desktop\\Products.xls";
         Workbook workbook = new HSSFWorkbook();
         Sheet sheet = workbook.createSheet("Products");
         var productsList = productService.findAll();
