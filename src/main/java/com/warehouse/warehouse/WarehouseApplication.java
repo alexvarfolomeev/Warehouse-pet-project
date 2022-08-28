@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import javax.persistence.Entity;
 
-@EntityScan("com.warehouse.warehouse.model")
+@EntityScan("com.warehouse.warehouse.repository.entity")
 @EnableJpaRepositories("com.warehouse.warehouse.repository")
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class WarehouseApplication {

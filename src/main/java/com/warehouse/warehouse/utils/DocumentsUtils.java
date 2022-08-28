@@ -2,8 +2,7 @@ package com.warehouse.warehouse.utils;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
-import com.warehouse.warehouse.model.Product;
-import com.warehouse.warehouse.model.Warehouse;
+import com.warehouse.warehouse.repository.entity.Product;
 import com.warehouse.warehouse.service.ProductServiceImpl;
 import com.warehouse.warehouse.service.WarehouseServiceImpl;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -45,6 +44,7 @@ public class DocumentsUtils {
             Iterator<Cell> cellIterator = row.cellIterator();
             while (cellIterator.hasNext()) {
                 Cell cell = cellIterator.next();
+
                 int colIdx = cell.getColumnIndex();
                 switch (colIdx) {
                     case 0:

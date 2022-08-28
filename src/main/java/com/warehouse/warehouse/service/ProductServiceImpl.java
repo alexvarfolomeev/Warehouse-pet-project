@@ -1,24 +1,22 @@
 package com.warehouse.warehouse.service;
 
-import com.opencsv.CSVReader;
-import com.opencsv.exceptions.CsvException;
-import com.warehouse.warehouse.model.Product;
+import com.warehouse.warehouse.repository.entity.Product;
 import com.warehouse.warehouse.repository.ProductRepository;
+import com.warehouse.warehouse.repository.WarehouseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.*;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    WarehouseRepository warehouseRepository;
 
     public Product findById(Long id) {
         Optional product = productRepository.findById(id);
@@ -58,7 +56,15 @@ public class ProductServiceImpl {
         Product oldProd = findProductByArticle(product.getArticle());
         oldProd.setQuantity(oldProd.getQuantity() + product.getQuantity());
         oldProd.setLastPurchasePrice(product.getLastPurchasePrice());
+        oldProd.setWarehouse(product.getWarehouse());
         productRepository.deleteById(oldProd.getId());
         return productRepository.save(oldProd);
+    }
+
+    public void moveProductFromBetweenWarehouses(Long productId, Long firstWarehouseId, Long secondWarehouseId) {
+        var product = productRepository.findProductByIdAndWarehouse(productId, firstWarehouseId);
+        var warehouse = warehouseRepository.findById(secondWarehouseId);
+        product.setWarehouse(warehouse.get());
+        updateProduct(product);
     }
 }
