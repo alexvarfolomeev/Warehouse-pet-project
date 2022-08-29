@@ -1,4 +1,4 @@
-package com.warehouse.warehouse.model;
+package com.warehouse.warehouse.repository.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,7 +8,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Data
 @Slf4j

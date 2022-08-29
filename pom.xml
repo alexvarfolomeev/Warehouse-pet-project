@@ -95,6 +95,13 @@
             <artifactId>Warehouse</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.openapitools.swagger/swagger-maven-plugin -->
+        <dependency>
+            <groupId>io.openapitools.swagger</groupId>
+            <artifactId>swagger-maven-plugin</artifactId>
+            <version>2.1.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>

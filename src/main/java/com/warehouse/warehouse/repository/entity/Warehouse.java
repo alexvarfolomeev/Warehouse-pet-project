@@ -1,14 +1,14 @@
-package com.warehouse.warehouse.model;
+package com.warehouse.warehouse.repository.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.persistence.*;
+import java.util.Objects;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,9 +26,23 @@ public class Warehouse {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "warehouse")
+    @EqualsAndHashCode.Exclude
     private Set<Product> product;
 
     public Warehouse(Integer warehouseNumber) {
         this.warehouseNumber = warehouseNumber;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Warehouse warehouse = (Warehouse) o;
+        return Objects.equals(id, warehouse.id) && Objects.equals(warehouseNumber, warehouse.warehouseNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, warehouseNumber);
     }
 }
