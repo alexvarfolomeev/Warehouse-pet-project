@@ -1,0 +1,86 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org">-->
+<!--<link rel="stylesheet"-->
+<!--      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"-->
+<!--      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"-->
+<!--      crossorigin="anonymous">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Registration</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<form th:object="${userForm}" action="#" th:method="post" th:action="@{/registration}">-->
+<!--    <div class="form-row">-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="inputEmail4">Email</label>-->
+<!--            <input type="text" class="form-control" id="inputEmail4" th:field="*{username}">-->
+<!--        </div>-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="inputPassword4">Password</label>-->
+<!--            <input type="password" class="form-control" id="inputPassword4" th:field="*{password}">-->
+<!--        </div>-->
+<!--        <div class="form-group col-md-6">-->
+<!--            <label for="inputPassword4">Confirm Password</label>-->
+<!--            <input type="password" class="form-control" id="confirmPassword4" th:field="*{passwordConfirm}">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <button type="submit" class="btn btn-primary">Sign in</button>-->
+<!--</form>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body class="hold-transition register-page">
+<div class="register-box" align="center" style="margin: 300px">
+    <div class="mb-3" align="center">
+        <div class="mb-3 register-card-body">
+            <p class="login-box-msg"><h1>Регистрация</h1></p>
+
+            <form action="#" th:action="@{/registration}" th:object="${userForm}" method="post">
+                <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+                    <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+                </div>
+                <div class="input-group mb-3" style="width: 250px">
+                    <input type="email" class="form-control" th:field="*{login}" placeholder="Email">
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3" style="width: 250px">
+                    <input type="password" class="form-control" th:field="*{password}" placeholder="Пароль" th:errorclass="is-invalid">
+
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="input-group mb-3" style="width: 250px">
+                    <input type="password" class="form-control" th:field="*{passwordConfirm}" placeholder="Повторите пароль">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary" style="margin: 10px">Зарегистрироваться</button>
+        </div>
+        <div>
+            <a href="/login">Вернуться на стартовую страницу</a>
+        </div>
+        <!-- /.form-box -->
+    </div><!-- /.card -->
+</div>
+</body>
+</html>
+</body>
+</html>
